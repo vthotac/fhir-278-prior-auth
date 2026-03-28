@@ -16,21 +16,10 @@ Prior authorization is one of the most operationally complex processes in health
 - **Duplicate Detection**: Searches by authorization number to prevent duplicate ServiceRequest creation
 - **Edge Case Handling**: Gracefully handles missing data, defaults service dates, and validates inputs against FHIR R4 schema requirements
 
+
 ## FHIR R4 Mapping Logic
-**X12 278 Segment**        **278 Field**                **FHIR R4 Field**
-NM1*IL                 Patient SSN              subject.reference
-NM1*1P                 Provider NPI             requester.reference
-TRN*1                  Authorization number     identifier
-UM                     Service type             codecode.coding.code
-HI*ABK                 Diagnosis (ICD-10)       reasonCode
-DTP*472                Service date             occurrenceDateTime
-HSD*VS                 Units requested          quantity
 
-
-
-## Mapping Logic
-
-| X12 278 Segment | 278 Field | FHIR ServiceRequest Field |
+| X12 278 Segment | 278 Field | FHIR R4 Field |
 |-----------------|-----------|---------------------------|
 | NM1\*IL | Patient SSN | subject.reference (via search) |
 | NM1\*1P | Provider NPI | requester.reference (via search) |
